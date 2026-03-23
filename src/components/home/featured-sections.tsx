@@ -127,15 +127,12 @@ function ProductSection({ title, icon, products, loading, bgClass = "" }: Produc
   if (products.length === 0) return null
 
   return (
-    <div className={`py-8 ${bgClass}`}>
+    <div className="py-12 md:py-16">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-2">
-            {icon}
-            <h2 className="text-xl font-bold">{title}</h2>
-          </div>
-          <Link href="/products" className="text-sm text-primary hover:underline">
-            すべて見る
+        <div className="flex items-end justify-between mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{title}</h2>
+          <Link href="/products" className="text-sm text-[hsl(var(--accent))] hover:opacity-70 transition-opacity">
+            すべて見る →
           </Link>
         </div>
 
@@ -145,12 +142,12 @@ function ProductSection({ title, icon, products, loading, bgClass = "" }: Produc
             return (
               <motion.div
                 key={product.id}
-                className="group bg-white rounded-lg border overflow-hidden"
-                initial={{ opacity: 0, y: 30 }}
+                className="group bg-white rounded-2xl overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                whileHover={{ y: -3, boxShadow: "0 8px 20px rgba(0,0,0,0.08)" }}
+                transition={{ duration: 0.4, delay: index * 0.06 }}
+                whileHover={{ y: -2, boxShadow: "0 8px 30px rgba(0,0,0,0.06)" }}
               >
                 {/* Product Image */}
                 <div className="relative aspect-[3/4] bg-gray-100">
@@ -292,8 +289,12 @@ export function FeaturedSections() {
         icon={<Sparkles className="h-5 w-5 text-yellow-500" />}
         products={recommendedProducts}
         loading={loading}
-        bgClass="bg-gradient-to-r from-yellow-50 to-orange-50"
       />
+
+      {/* Separator */}
+      <div className="container mx-auto px-4">
+        <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+      </div>
 
       {/* New Arrivals */}
       <ProductSection
@@ -301,7 +302,6 @@ export function FeaturedSections() {
         icon={<Clock className="h-5 w-5 text-blue-500" />}
         products={newArrivals}
         loading={loading}
-        bgClass="bg-gradient-to-r from-blue-50 to-indigo-50"
       />
     </>
   )

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { DM_Sans, Playfair_Display } from 'next/font/google'
+import { Noto_Sans_JP } from 'next/font/google'
 import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
 import { Header } from '@/components/layout/header'
@@ -10,8 +10,11 @@ import { MetaPixelPageView } from '@/components/MetaPixelPageView'
 import Script from 'next/script'
 import { siteConfig } from '@/lib/config/site'
 
-const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-body' })
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-display', weight: ['400', '600', '700'] })
+const notoSansJP = Noto_Sans_JP({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+  variable: '--font-body',
+})
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -30,11 +33,9 @@ export default function RootLayout({
     <html lang="ja" suppressHydrationWarning>
       <body className={cn(
         "min-h-screen bg-background antialiased",
-        dmSans.variable,
-        playfair.variable,
-        dmSans.className
+        notoSansJP.variable,
+        notoSansJP.className
       )}>
-        {/* Meta Pixel Base Code */}
         {metaPixelId && (
           <Script id="meta-pixel" strategy="afterInteractive">
             {`
